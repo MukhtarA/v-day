@@ -31,24 +31,24 @@ function App() {
   const handleYesClick = async () => {
     setYesPressed(true);
 
-    // try {
-    //   await fetch("https://api.web3forms.com/submit", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       access_key: "5c66a699-25ae-4a9e-bbdc-2cf0cf37de03", // ПОЛУЧИ КЛЮЧ НА WEB3FORMS.COM
-    //       subject: "❤️ ОНА СКАЗАЛА ДА! ❤️",
-    //       from_name: "Твоя Валентинка",
-    //       message: `Ура! Пользователь нажал "Yes, I will!" на твоей странице. Почта получателя: m.abulmansur32@gmail.com`,
-    //     }),
-    //   });
-    //   console.log("Email sent successfully!");
-    // } catch (error) {
-    //   console.error("Error sending email:", error);
-    // }
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_FORM_TOKEN, // ПОЛУЧИ КЛЮЧ НА WEB3FORMS.COM
+          subject: "❤️ ОНА СКАЗАЛА ДА! ❤️",
+          from_name: "Твоя Валентинка",
+          message: `Ура! Пользователь нажал "Yes, I will!" на твоей странице. Почта получателя: m.abulmansur32@gmail.com`,
+        }),
+      });
+      console.log("Email sent successfully!");
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
 useEffect(() => {
