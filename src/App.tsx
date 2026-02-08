@@ -15,11 +15,19 @@ function App() {
   const [hearts, setHearts] = useState<{ id: number; left: number; delay: number; duration: number }[]>([]);
 
   const handleNoHover = () => {
-    // Generate random movement within a limited range (-100px to 100px)
-    // This keeps it close enough to be annoying but not unreachable
-    // Using transform ensures no layout shift ("squashing")
-    const x = (Math.random() - 0.5) * 300; 
-    const y = (Math.random() - 0.5) * 300;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    console.log(screenWidth, screenHeight);
+    // Устанавливаем безопасный отступ (например, 100px), 
+    // чтобы кнопка не пряталась за границы экрана или под другие элементы
+    const padding = 200;
+
+    // Вычисляем случайные координаты.
+    // Мы используем (Math.random() - 0.5), чтобы получить диапазон от -0.5 до 0.5.
+    // Умножая на ширину экрана, мы позволяем кнопке прыгать и влево, и вправо.
+    const x = (Math.random() - 0.6) * (screenWidth - padding);
+    const y = (Math.random() - 0.6) * (screenHeight - padding);
 
     setNoButtonTransform({ x, y });
   };
@@ -183,8 +191,8 @@ useEffect(() => {
                       <HeartCrack size={100} color="#9d8c8c" />
                   </div>
                   <div className="typography-group">
-                      <h1 className="title">Why? 😭</h1>
-                      <div className="subtitle">That hurts...</div>
+                      <h1 className="title">Почему нет? 😭</h1>
+                      <div className="subtitle">Мне грустна...</div>
                   </div>
               </div>
             </div>
@@ -221,13 +229,13 @@ useEffect(() => {
                         <Smile size={100} color="#fb7185" />
                     </div>
                     <div className="typography-group">
-                        <h1 className="title">Just Kidding!</h1>
-                        <div className="subtitle">You know what to do 😉</div>
+                        <h1 className="title">Ну нет малыш так не пойдет!</h1>
+                        <div className="subtitle">Ты знаешь что делать 😉</div>
                     </div>
                     
                     <div className="actions">
                         <button className="btn btn-yes" onClick={handleYesClick}>
-                            Yes, I will!
+                            Да, конечно буду!
                             <div style={{ width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <Heart size={18} fill="currentColor" />
                             </div>
